@@ -77,3 +77,4 @@ int main(void)
         printf("%ld 文字目に見つかりました。\n", s - s1 + 1);
     return (0);
 }
+

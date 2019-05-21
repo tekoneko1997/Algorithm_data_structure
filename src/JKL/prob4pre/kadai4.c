@@ -90,14 +90,12 @@ int bm_count(char *pat, char *txt) {
 int main(void)
 {
     int s;
-    // char s1[80] ; /* テキスト */
-    // char s2[80] ; /* パターン */
-    char s1[] ="qwertyuqwertyuiqwertyu";
-    char s2[] ="trew";
+    char s1[80] ; /* テキスト */
+    char s2[80] ; /* パターン */
     printf("テキスト：");
- //   scanf("%s", s1);
+    scanf("%s", s1);
     printf("パターン：");
- //   scanf("%s", s2);
+    scanf("%s", s2);
     s = bm_count(s2, s1); /* 文字列 s1 から文字列 s2 を Boyer-Moore 法で探索 */
     if (s == 0)
         puts("テキスト中にパターンは存在しません。");
