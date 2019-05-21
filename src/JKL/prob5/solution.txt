@@ -1,0 +1,39 @@
+(1)
+(ア)  Pop関数
+(イ)  -1
+(ウ)  0
+
+(2)
+(ア)
+s.ptr = 6
+s.stk[3] = 24
+(イ)
+38
+(ウ)
+38
+　
+(3)
+typedef struct {
+    int max;
+    int ptr;
+    PhysCheck stk[MAX];
+} PhysCheckStack;
+/*---スタックにデータをプッシュ---*/
+int Push(PhysCheckStack *s, PhysCheck x)
+{
+    if (s->ptr >= s->max)
+        return -1; /* スタック満杯*/
+    s->stk[s->ptr] = x;
+    s->ptr++;
+    return 0;
+}
+/*---スタックからデータをポップ---*/
+int Pop(PhysCheckStack *s, PhysCheck *x)
+{
+    if (s->ptr <= 0)
+        return -1; /* スタックは空*/
+    s->ptr--;
+    *x = s->stk[s->ptr];
+    return (0);
+}
+

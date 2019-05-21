@@ -26,6 +26,7 @@ int Pop(IntStack *s, int *x)
     if (s->ptr <= 0)
         return -1; /* スタックは空*/
     s->ptr--;
+    printf("%d",s->ptr);
     *x = s->stk[s->ptr];
     return (0);
 } /*---スタックからデータをピーク---*/
@@ -49,41 +50,43 @@ int main(void)
 {
     IntStack s;
     Initialize(&s, MAX);
+    int menu[]={2,1,1,1,1,1,1,3,0}, x[]={24,53,11,24,47,38};
+    int i =0;
     while (1)
     {
-        int menu, x;
         printf("現在のデータ数：%d/%d\n", Size(&s), Capacity(&s));
         printf("(1) プッシュ(2) ポップ(3) ピーク(4) 表示(0) 終了：");
         //scanf("%d", &menu);
-        menu = 2;
-        if (menu == 0)
+        if (menu[i] == 0)
             break;
-        switch (menu)
+        switch (menu[i])
         {
         case 1: /* プッシュ*/
             printf("データ：");
-            scanf("%d", &x);
-            if (Push(&s, x) == -1)
+            //scanf("%d", &x);
+            if (Push(&s, x[i]) == -1)
                 puts("\aエラー：プッシュに失敗しました。");
-            menu = 0;
             break;
         case 2: /* ポップ*/
-            if (Pop(&s, &x) == -1)
+            if (Pop(&s, &x[i]) == -1)
                 puts("\aエラー：ポップに失敗しました。");
-            elseprintf("ポップしたデータは%dです。\n", x);
-            menu = 0;
+            else
+            printf("ポップしたデータは%dです。\n", x[i]);
+            
             break;
         case 3: /* ピーク*/
-            if (Peek(&s, &x) == -1)
+            if (Peek(&s, &x[i]) == -1)
                 puts("\aエラー：ピークに失敗しました。");
-            elseprintf("ピークしたデータは%dです。\n", x);
-            menu = 0;
+            else
+            printf("ピークしたデータは%dです。\n", x[i]);
+            
             break;
         case 4: /* 表示*/
             Print(&s);
-            menu = 0;
+            
             break;
         }
+        i++;
     }
     return 0;
 }
