@@ -167,11 +167,12 @@ int Count(StringsQueue *q, char *x)
 int main(void)
 {
     StringsQueue que;
-    Initialize(&que, 5);
-    int menu[]={1,1,1,1,1,1,2,2,4};
-    char *x = {'a1','a2','a3','a4','a5','a6'};
-    //PhysCheck x;
-    int i =0;
+    if (Initialize(&que, 5) == -1)
+    {
+        puts("キューの生成に失敗しました。");
+        return 1;
+    }
+    int i = 0;
     while (1)
     {
         int m,count = 0;
@@ -179,15 +180,15 @@ int main(void)
 
         printf("現在のデータ数：%d/%d\n", Size(&que), Capacity(&que));
         printf("(1)エンキュー (2)デキュー (3)ピーク (4)表示 (5)パターンの計数 (0)終了：");
-        //scanf("%d", &m);
+        scanf("%d", &m);
 
-        if (menu[i] == 0)
+        if (m == 0)
             break;
-        switch (menu[i])
+        switch (m)
         {
         case 1:
             printf("データ：");
-            //scanf("%s", x);
+            scanf("%s", x);
             if (Enque(&que, x) == -1)
                 puts("\aエラー:データのエンキューに失敗しました。");
             break;
@@ -208,7 +209,7 @@ int main(void)
             break;
         case 5:
             printf("パターン：");
-            //scanf("%s", x);
+            scanf("%s", x);
             count = Count(&que, x);
             if (count != 0)
                 printf("パターンは%d個見つかりました。\n", count);
